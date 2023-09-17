@@ -37,6 +37,10 @@ func Server(port int, domain string, cluster string) error {
 		}
 		fmt.Fprint(w, HTML)
 	})
+	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(200)
+		fmt.Fprint(w, "ok\n")
+	})
 	fs := http.FileServer(http.FS(static))
 	http.Handle("/static/", fs)
 
