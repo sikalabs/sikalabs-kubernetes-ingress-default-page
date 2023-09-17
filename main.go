@@ -7,8 +7,6 @@ import (
 	"html/template"
 	"net/http"
 	"os"
-
-	_ "embed"
 )
 
 //go:embed index.html
