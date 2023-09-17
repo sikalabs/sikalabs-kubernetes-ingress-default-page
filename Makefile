@@ -1,4 +1,5 @@
 IMAGE = sikalabs/sikalabs-kubernetes-ingress-default-page
+IMAGE_GHCR = ghcr.io/${IMAGE}
 
 prettier-check:
 	yarn run prettier-check
@@ -12,3 +13,7 @@ dev:
 build-and-push:
 	docker build --platform linux/amd64 -t $(IMAGE) .
 	docker push $(IMAGE)
+
+push-to-ghcr:
+	docker tag $(IMAGE) $(IMAGE_GHCR)
+	docker push $(IMAGE_GHCR)
