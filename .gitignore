@@ -16,3 +16,6 @@
 
 # NodeJS
 node_modules
+
+# App
+sikalabs-kubernetes-ingress-default-page

@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&amp;display=swap" rel="stylesheet" />
+    <title>cluster={{ .Cluster }} (SikaLabs Kubernetes)</title>
+    <style>
+      body {
+        font-family: "IBM Plex Mono", sans-serif;
+        background: url(/static/bg.jpg) center center / cover no-repeat fixed;
+        padding: 0 1em;
+        font-size: 1.4em;
+        color: white;
+      }
+      .bottom-right {
+        position: absolute;
+        bottom: 0;
+        right: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <p>cluster={{ .Cluster }}</p>
+    <p class="bottom-right">SikaLabs Kubernetes</p>
+  </body>
+</html>

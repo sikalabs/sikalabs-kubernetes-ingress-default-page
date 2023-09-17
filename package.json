@@ -1,0 +1,13 @@
+{
+  "name": "sso-sikalabs-com-homepage",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prettier-check": "prettier --check .",
+    "prettier-write": "prettier --write ."
+  },
+  "dependencies": {
+    "prettier": "^3.0.3"
+  }
+}
