@@ -4,9 +4,9 @@ import (
 	"bytes"
 	"embed"
 	"fmt"
-	"html/template"
 	"net/http"
 	"os"
+	"text/template"
 )
 
 //go:embed index.html
@@ -16,24 +16,32 @@ var TEMPLATE string
 //go:embed static/favicon.ico
 var static embed.FS
 
-func Server(port int, domain string, cluster string) error {
+func renderTemplate(cluster string, show404 bool) (string, error) {
 	t := template.Must(template.New("index-html").Parse(TEMPLATE))
 	var tpl bytes.Buffer
-	err := t.Execute(&tpl, map[string]string{
+	err := t.Execute(&tpl, map[string]interface{}{
 		"Cluster": cluster,
+		"Show404": show404,
 	})
 	if err != nil {
-		return err
+		return "", err
 	}
-	HTML := tpl.String()
+	return tpl.String(), nil
+}
+
+func Server(port int, domain string, cluster string) error {
+	HTML_200, _ := renderTemplate(cluster, false)
+	HTML_404, _ := renderTemplate(cluster, true)
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 		if r.Host == domain {
 			w.WriteHeader(200)
+			fmt.Fprint(w, HTML_200)
 		} else {
 			w.WriteHeader(404)
+			fmt.Fprint(w, HTML_404)
 		}
-		fmt.Fprint(w, HTML)
 	})
 	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(200)

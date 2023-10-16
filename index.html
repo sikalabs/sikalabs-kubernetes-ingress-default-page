@@ -19,10 +19,15 @@
         bottom: 0;
         right: 1em;
       }
+      .center {
+        text-align: center;
+        font-size: 5em;
+    }
     </style>
   </head>
   <body>
     <p>cluster={{ .Cluster }}</p>
+    {{ if .Show404 }}<p class="center">404</p>{{ end }}
     <p class="bottom-right">SikaLabs Kubernetes</p>
   </body>
 </html>
