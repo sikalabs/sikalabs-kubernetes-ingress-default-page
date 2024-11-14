@@ -1,33 +1,78 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="/static/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&amp;display=swap" rel="stylesheet" />
-    <title>cluster={{ .Cluster }} (SikaLabs Kubernetes)</title>
+    <title>cluster={{ .Cluster }} (sikalabs kubernetes)</title>
     <style>
-      body {
+      /* Set page size and style */
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
         font-family: "IBM Plex Mono", sans-serif;
         background: url(/static/bg.jpg) center center / cover no-repeat fixed;
         padding: 0 1em;
-        font-size: 1.4em;
+        color: white;
+        font-size: 1.2em;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      a {
         color: white;
       }
+
+      /* Top-left text */
+      .top-left {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        text-align: left;
+      }
+
+      /* Center text */
+      .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      /* Bottom-right text */
       .bottom-right {
         position: absolute;
         bottom: 0;
-        right: 1em;
+        right: 0;
+        padding: 10px;
+        text-align: right;
       }
-      .center {
-        text-align: center;
-        font-size: 5em;
-    }
     </style>
   </head>
   <body>
-    <p>cluster={{ .Cluster }}</p>
-    {{ if .Show404 }}<p class="center">404</p>{{ end }}
-    <p class="bottom-right">SikaLabs Kubernetes</p>
+    <div class="top-left">cluster={{ .Cluster }}</div>
+    <div class="center">
+      {{ if .Show404 }}
+      <p style="font-size: 7em">404</p>
+      {{ end }}
+    </div>
+    <div class="bottom-right">
+      <p>
+        <span>sikalabs kubernetes</span>
+        <br />
+        <span style="font-size: 0.5em">
+          <a href="https://sikalabs.com" target="_blank">sikalabs.com</a>,
+          <a href="https://github.com/sikalabs/sikalabs-kubernetes-ingress-default-page" target="_blank">src</a>
+        </span>
+      </p>
+    </div>
   </body>
 </html>
